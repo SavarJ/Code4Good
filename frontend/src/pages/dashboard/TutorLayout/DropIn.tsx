@@ -3,10 +3,14 @@ import Button from "@mui/material/Button";
 // import AddIcon from '@mui/icons-material/Add';
 
 function DropIn() {
-  const [available, setAvailable] = useState(false);
+  // this will be the entire drop in menu component
+  const [available, setAvailable] = useState(true);
+  function clockIn() {
+    // send a database request to user profile 
+  }
   return (
     <>
-      {available} && <Button>test</Button>
+      {available && <Button>test</Button> }
 
     </>
   );
