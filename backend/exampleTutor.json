@@ -7,7 +7,15 @@
     "phoneNumber": "917-000-0000",
     "transcript": "link_to_transcript",
     "bio": "why do I want to work for JREAM",
-    "howDidYouHearAboutUs": "selection from [referal, alumni, other]",
-    "referral": "Person who referred or null" 
+    "hiring": {
+      "howDidYouHearAboutUs": "selection from [referal, alumni, other]",
+      "referral": "Person who referred or null"   
+    }, 
+    "data": {
+      "available": false,
+      "totalHours": 0,
+      "points": 0,
+      "rating": 5.0
+    }
   }
 }
