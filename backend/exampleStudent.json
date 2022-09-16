@@ -1,0 +1,26 @@
+{
+  "email": {
+    "role": "Student",
+    "fname": "first name",
+    "lname": "last name",
+    "birthday": "DD/MM/YYYY",
+    "phoneNumber": "917-000-0000",
+    "chapterCode": "",
+    "gradingScale": "option from [gpa, 1-4, 1-100]",
+    "grades": {
+      "history": [
+        "list of all previous and current history grades"
+      ],
+      "english": [
+        "list of all previous and current history grades"
+      ],
+      "science": [
+        "list of all previous and current history grades"
+      ],
+      "math": [
+        "list of all previous and current history grades"
+      ]
+    },
+    "interests": "interests text"
+  }
+}
