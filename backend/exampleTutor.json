@@ -14,8 +14,8 @@
     "data": {
       "available": false,
       "totalHours": 0,
-      "points": 0,
-      "rating": 5.0
-    }
+      "points": 0
+    },
+    "sessionsData": [ ["time", "rating"] ]
   }
 }
