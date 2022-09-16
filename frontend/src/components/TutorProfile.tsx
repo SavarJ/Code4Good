@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const TutorProfile = () => {
+export const TutorProfile = (name : String, image : String, subjects : Array<String>, bio : String) => {
   return (
-    <div>TutorProfile</div>
+    <header></header>
   )
 }
