@@ -1,16 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import Button from '@mui/material/Button';
 
-
-function DropIn() {
-  const [available, setAvailable] = useState(false);
+function DropIn({}) {
+  const [available, setAvailable] = useState(true);
   return (
     <>
-      {available} && <Fab color="primary" aria-label="add">
-  <AddIcon />
-</Fab>
-
+     <Button> hi </Button>
+    
     </>
   )
 }
