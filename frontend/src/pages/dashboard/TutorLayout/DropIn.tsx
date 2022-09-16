@@ -4,14 +4,22 @@ import Button from "@mui/material/Button";
 
 function DropIn() {
   // this will be the entire drop in menu component
-  const [available, setAvailable] = useState(true);
+  // default state is clocked out
+  const [available, setAvailable] = useState(false);
   function clockIn() {
     // send a database request to user profile 
+    setAvailable(true);
+  }
+  function clockOut() {
+    // send a database request to user profile 
+    setAvailable(false);
   }
   return (
     <>
-      {available && <Button>test</Button> }
-
+      {/* if clocked in, display clock out menu */}
+      {available && <Button onClick={() => clockOut()} color="error" variant="contained">Clock out</Button> }
+      {/* if clocked out, display clock in menu */}
+      {!available && <Button onClick={() => clockIn()} color="success" variant="contained">Clock In</Button> }
     </>
   );
 }
