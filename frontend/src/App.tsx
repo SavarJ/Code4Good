@@ -1,29 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import DropIn from './TutorLayout/DropIn';
-//TEST
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <DropIn></DropIn>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
+
+const Login: React.FC = () => {
+  return <div>Login</div>;
+};
+
+const Register: React.FC = () => {
+  return <div>Register</div>;
+};
+
+const Dashboard: React.FC = () => {
+  return <div>Dashboard</div>;
+};
 
 export default App;
