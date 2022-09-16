@@ -1,7 +1,9 @@
-
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/auth/login/Login";
+import Register from "./pages/auth/register/Register";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -14,17 +16,5 @@ function App() {
     </Router>
   );
 }
-
-const Login: React.FC = () => {
-  return <div>Login</div>;
-};
-
-const Register: React.FC = () => {
-  return <div>Register</div>;
-};
-
-const Dashboard: React.FC = () => {
-  return <div>Dashboard</div>;
-};
 
 export default App;
