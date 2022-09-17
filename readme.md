@@ -1,7 +1,7 @@
 ![github repo badge: Built With](https://img.shields.io/badge/Using-Typescript-181717?color=blue) ![github repo badge: Built With](https://img.shields.io/badge/Using-React-181717?color=blue) ![github repo badge: Built On](https://img.shields.io/badge/Built%20On-VSCode-181717?color=blue) 
 ![github repo badge: ](https://img.shields.io/badge/-MongoDB-181717?color=green)
 
-# Jream Connection
+# JREAM Connection
 Promoting  enhanced, on-demand tutoring services in  matching students to their ideal mentor
 
 ## Features
@@ -11,6 +11,7 @@ Leaderboard and rating system
 - Support from on-demand evening tutoring 
 - Gives tutors and students flexibility
 - Seperate Tutor and Student profiles to accomodate their different needs
+- Tutor profiles allow students to select particular tutors with common interests and connect better. Builds rappport between student and tutor and builds community retaining mentors
 - Tracks data to allow analysis of currently offered services and where needs improvement
 - Tracks volunteer hours to auto-generate volunteer certificates
 - Twilio text verification codes
@@ -32,8 +33,14 @@ Leaderboard and rating system
 - Working together as a team and keeping each other motivated into the night, as well as balancing our individual strengths
 
 ## Contributions
+- Savar
 - Daniel
   - Designed toggle component in react utilzing state hook
   - Focused on backend development, managing the API library and endpoints
   - Mentored in git merging and branching to help team members push their changes
   - Wrote this readme!!
+- Natu
+- Jake
+- Muhaimin
+- Akhil
+- Max
