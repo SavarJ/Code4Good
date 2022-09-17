@@ -43,3 +43,6 @@ Leaderboard and rating system
 - Muhaimin
 - Akhil
 - Max
+  - Developed the entire SwiftUI portion of the project
+  - Created Student and Tutor objects
+  - Created a Feed of Tutors populated with test data that the user could explore
