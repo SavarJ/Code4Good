@@ -23,24 +23,25 @@ def checkPassword(email,password):
   enc = password.encode('utf-8')
   hashed = bcrypt.hashpw(enc, SALT_KEY)
   api.update_user(email, {'password': hashed.decode('utf-8')})
-  if user.password == hashed: 
+  if user['password'] == hashed: 
     return True
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
-        email = request.get_json()['email']
+        email = request.get_json()['email'].replace('.', '___dot___')
         password = request.get_json()['password']
         user = api.get_user(email)
         if api.does_user_exist(email):
             session['username'] = email
             # verify password
-            checkPassword(email, password)
-            
-            send_verification(user)
-            return {"Status": "Verification Code Sent"}
+            if checkPassword(email, password):
+              send_verification(user)
+              return {"Status": "Verification Code Sent"}
+            else:
+              return {"Status": "Wrong Password"}
             #return redirect(url_for('verify_passcode_input'))
         error = "User not found. Please try again."
         return render_template('index.html', error = error)
