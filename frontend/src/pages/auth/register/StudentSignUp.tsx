@@ -29,7 +29,7 @@ export default function SignUp() {
       phoneNumber: data.get('phoneNumber'),
       role : 'student'
 
-    }));*/
+    }));*/ 
     console.log({
       email: data.get('email'),
       password: data.get('password'),
