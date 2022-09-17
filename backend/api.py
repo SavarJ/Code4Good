@@ -115,3 +115,7 @@ def endSession(tutor_email:str):
 # uploadUser('exampleStudent.json')
 # print(getUser('student@email___dot___com'))
 # setAvailability('student@email___dot___com', True)
+clockIn('student@email___dot___com')
+print(get_availability())
+# clockOut('student@email___dot___com')
+# print(get_availability())
