@@ -1,0 +1,7 @@
+.footballIcon {
+  position: relative;
+  float: right;
+  display: grid;
+  gap: 0.5rem;
+  color:#eadc22;
+}
