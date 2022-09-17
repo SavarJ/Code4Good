@@ -6,6 +6,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Student_NavBar from "./StudentNavBar";
+import "./TutorFeed.css";
 
 const users = [
   {
@@ -36,13 +37,18 @@ export default function Tutor_Feed() {
       <Student_NavBar></Student_NavBar>
       <Grid item xs={6}>
         <Typography variant="h5">Tutor Feed</Typography>
-        <Grid>
-          <Grid></Grid>
-          <Avatar src={users[0].link}></Avatar>
-          <Typography>Name: {users[0].name}</Typography>
-          <Typography component="legend">Rating:</Typography>
-          <Rating name="read-only" value={users[0].rating} readOnly />
-          <br />
+        <Grid className="tutor-feed-grid">
+          {users.map((user) => {
+            return (
+              <div className="tutor-feed">
+                <Avatar src={user.link}></Avatar>
+                <Typography>Name: {user.name}</Typography>
+                <Typography component="legend">Rating:</Typography>
+                <Rating name="read-only" value={user.rating} readOnly />
+                <br />
+              </div>
+            );
+          })}
           <Button>Choose This Tutor</Button>
         </Grid>
       </Grid>
