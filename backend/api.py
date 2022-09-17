@@ -24,6 +24,32 @@ def readJSON(filename):
 
 # api for managing new users
 
+def verify(data):
+    required_fields = ['password', 'fname', 'lname', 'birthday','phoneNumber', "role"]
+    for field in required_fields:
+      if field not in data:
+        return False
+    # verify that role is selected first. Then check role specific required fields
+    return verify_tutor(data) if data['role'] == tutor else verify_student(data)
+
+
+def verify_tutor():
+  # specialized fields to verify for incoming tutor
+  required_fields = ['hiring', 'bio']
+  for field in required_fields:
+    if field not in data:
+      return False
+  return True
+
+def verify_student():
+  # specialized fields to verify for incoming student
+  required_fields = ['gradingScale', 'grades']
+  for field in required_fields:
+    if field not in data:
+      return False
+  return True
+
+
 def uploadUserByFile(file):
   users = ref.child(f'users/')
   data = readJSON(file)
