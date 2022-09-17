@@ -9,12 +9,10 @@ function DropIn() {
   function clockIn() {
     // send a database request to user profile 
     setAvailable(true);
-    // Tutors show Zoom link
   }
   function clockOut() {
     // send a database request to user profile 
     setAvailable(false);
-    // Students see "Tutor not available"
   }
   return (
     <>

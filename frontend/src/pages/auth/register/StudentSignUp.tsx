@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import Axios from "Axios";
 
 
 const theme = createTheme();
@@ -20,10 +20,25 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    /*Axios.post("/users",({
+      email: data.get('email'),
+      password: data.get('password'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      dateOfBirth: data.get('dateOfBirth'),
+      phoneNumber: data.get('phoneNumber'),
+      role : 'student'
+
+    }));*/ 
     console.log({
       email: data.get('email'),
       password: data.get('password'),
-    });
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      dateOfBirth: data.get('dateOfBirth'),
+      phoneNumber: data.get('phoneNumber'),
+      role : 'student'
+    })
   };
 
   return (
@@ -91,7 +106,7 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="Date of Birth"
+                  name="dateOfBirth"
                   label="Date of Birth"
                   type="dateofbirth"
                   id="dateofbirth"
@@ -102,7 +117,7 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="phonenumber"
+                  name="phoneNumber"
                   label="Phone Number"
                   type="phonenumber"
                   id="phonenumber"

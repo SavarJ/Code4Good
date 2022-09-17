@@ -23,6 +23,11 @@ export default function SignUp() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      dateOfBirth: data.get('dateOfBirth'),
+      phoneNumber: data.get('phoneNumber'),
+      role : 'tutor'
     });
   };
 
