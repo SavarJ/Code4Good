@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
+import axios from "axios";
+
 // import AddIcon from '@mui/icons-material/Add';
 
 function DropIn() {
@@ -7,11 +9,15 @@ function DropIn() {
   // default state is clocked out
   const [available, setAvailable] = useState(false);
   function clockIn() {
-    // send a database request to user profile 
+    const email = window.localStorage.getItem('useremail');
+    // send a database request to user profile
+    axios.post('/clockin', {'email': email}) 
     setAvailable(true);
   }
   function clockOut() {
-    // send a database request to user profile 
+    const email = window.localStorage.getItem('useremail');
+    // send a database request to user profile
+    axios.post('/clockout', {'email': email}) 
     setAvailable(false);
   }
   return (
