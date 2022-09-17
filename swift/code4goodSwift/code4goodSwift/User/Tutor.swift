@@ -18,6 +18,7 @@ struct Tutor: Decodable {
     var zoomLink: String
     var availableForDropIn: Bool
     var totalHours: Int
+    var rating: Double
     var points: Double
     var profilePic: String
 }

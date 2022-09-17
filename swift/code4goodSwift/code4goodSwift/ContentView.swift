@@ -11,20 +11,30 @@ struct ContentView: View {
     let tutorFeed = TestData.tutors
     
     var body: some View {
+        NavigationView {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.blue, Color.black]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-            VStack {
-                Text("Tutors")
-                    .foregroundColor(Color.white)
-                    .font(.system(size: 45, weight: .bold, design: .default))
-                VStack(spacing: 4) {
-                    ForEach(tutorFeed, id: \.id) { tutor in
-                        tutorListProfile(id: tutor.id)
+            //NavigationView {
+                VStack {
+                    //Text("Tutors")
+                    //    .foregroundColor(Color.white)
+                    //    .font(.system(size: 45, weight: .bold, design: .default))
+                    VStack(spacing: 4) {
+                        ForEach(tutorFeed, id: \.id) { tutor in
+                            NavigationLink(
+                                destination: tutorProfile(id: tutor.id),
+                                label: { tutorListProfile(id: tutor.id)}
+                            )
+                        }
                     }
-                }
-                Spacer()
+                    Spacer()
+                }.padding(.top, 30)
+                .navigationBarTitle("Tutors", displayMode: .large)
+                .navigationBarHidden(false)
             }
+            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all))
         }
             
     }
