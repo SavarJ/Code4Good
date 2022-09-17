@@ -1,5 +1,6 @@
 import Leaderboard from "./Leaderboard";
-import DropIn from "../../components/DropIn";
+import DropIn from './TutorDropIn'
+
 const Dashboard: React.FC = () => {
   return (
     <div>
