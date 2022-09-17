@@ -76,8 +76,18 @@ def getUser():
   # takes in {'email': email } data
   return jsonify(api.getUser(request.get_json()['email']))
 
+@app.route('/getAvailability', methods=['GET'])
+def get_availability():
+  pass
+
+@app.route('/setAvailability', methods=['GET'])
+def set_availability():
+  pass
+
 @app.route("/createuser/", methods=["PUT"])
-def createUser():
+def create_user():
+  # TODO: verification
+  # api.verify()
   return jsonify(api.uploadUser((request.get_json())))
 
 app.run()
