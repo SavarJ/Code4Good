@@ -48,7 +48,7 @@ Leaderboard and rating system
 - Akhil
   - (Co-worked with Nethaniel)
     - Integrated Twilio REST-Api to local repo and dubgged network and auth errors
-    - WORRKKK   
+    - Made a linked hashmap that linked email to phone-number and then email to password   
   - Worked with a new theme for the final presentation and did visuals on some slides.
 - Max
   - Developed the entire SwiftUI portion of the project
