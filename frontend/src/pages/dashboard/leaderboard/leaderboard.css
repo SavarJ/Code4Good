@@ -1,0 +1,32 @@
+.leaderboard {
+  width: 300px;
+  display: grid;
+  gap: 0.5rem;
+}
+.leaderboard-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid black;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 0.375rem; /* 6px */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.leaderboard-row:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.leaderboard-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.leaderboard-img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
