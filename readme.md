@@ -33,6 +33,10 @@ Leaderboard and rating system
 
 ## Contributions
 - Savar
+  - Designed and implemented the tutor retention strategy (leaderboard, rewards/points system)
+  - Created and improvised multiple React components including tutor views, authentication, etc
+  - Developed the entire backend API for tutors/tutees using Node.js, Express.js, and MongoDB
+  - Led teammates and worked together with the team to squash bugs across all the tech stacks
 - Daniel
   - Designed toggle component in react utilzing state hook
   - Focused on backend development, managing the API library and endpoints
