@@ -43,10 +43,10 @@ export default function SignIn() {
     axios(config)
       .then(function (response) {
         if (response.data.errorCode !== 500) {
+          window.localStorage.clear();
           window.localStorage.setItem("useremail", response.data.email);
           if (response.data.isTutor) {
             window.location.href = "/tutorDashboard";
-            window.localStorage.setItem("useremail", response.data.email);
           } else {
             window.location.href = "/studentDashboard";
           }
