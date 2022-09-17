@@ -41,10 +41,15 @@ export default function Tutor_Feed() {
           {users.map((user) => {
             return (
               <div className="tutor-feed">
-                <Avatar src={user.link}></Avatar>
-                <Typography>Name: {user.name}</Typography>
-                <Typography component="legend">Rating:</Typography>
-                <Rating name="read-only" value={user.rating} readOnly />
+                <div>
+                  <Avatar src={user.link}></Avatar>
+                  <Typography>Name: {user.name}</Typography>
+                  <Typography component="legend">Rating:</Typography>
+                  <Rating name="read-only" value={user.rating} readOnly />
+                </div>
+                <div>
+                  <Button>Book</Button>
+                </div>
                 <br />
               </div>
             );
