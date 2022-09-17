@@ -36,7 +36,7 @@ import axios from "axios";
 // ];
 
 export default function Tutor_Feed() {
-  const [users, setUsers] = useState(usersTemp)
+  const [users, setUsers] = useState([])
   const [selectedUser, setSelectedUser] = useState({})
   const [showSidePanel, setShowSidePanel] = useState(false)
   useEffect(() => {
@@ -51,7 +51,8 @@ export default function Tutor_Feed() {
   });
 
   // helper function - book tutor :
-  function selectBookTutor(setUsers, removeTutor) {
+  function selectBookTutor(user) {
+    setSelectedUser(user)
     // setUsers(users.filter(user => user['email'] != removeTutor));
     // axios.post('http://localhost:5050/book', { 'tutorEmail': removeTutor })
     setShowSidePanel(true)
