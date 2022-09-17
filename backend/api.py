@@ -1,3 +1,4 @@
+from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, db
 import json
@@ -35,17 +36,41 @@ def getUser(email):
   
 # availability for tutors now  
 
-def setAvailability():
-  availableTutors = ref.child('availableTutors/')
-  # not finished yet, switching to debugging flask
-  # notes learned: firebase does not support lists
-  availableTutors.update({'a': ' hi', 'b': 'c'})
+
+availableTutors = ref.child('availableTutors/')
+
+# This is when the tutor marks themselves as available
+def setAvailability(email: str, availability: bool) -> str:
+  if availability:
+    user = getUser(email)
+    availableTutors.update({email: {'zoom': user.get('zoom'), 'startTime': None, 'available': True, 'sessionStarted': False}})
+    return True
+  else:
+    user = getUser(email)
+    availableTutors.update({email: {'zoom': user.get('zoom'), 'startTime': None, 'available': False, 'sessionStarted': False}})
+  
+def getAvailableTutor(tutor_email:str):
+    # get the user from availableTutors
+    tutor = availableTutors.child(tutor_email).get()
+    availableTutors.update({tutor_email: {'zoom': tutor.get('zoom'), 'startTime': datetime.now().isoformat(), 'available': False, 'sessionStarted': True}})
+    return tutor.get('zoom')
+
+def endSession(tutor_email:str):
+    tutor = availableTutors.child(tutor_email).get()
+    startTime = datetime.fromisoformat(tutor.get('startTime'))
+    endTime = datetime.now()
+    availableTutors.child(tutor_email).delete()
+    # put this tutoring session into the tutoring history
+    tutoringHistory = ref.child('tutoringHistory/')
+    tutoringHistory.update({'tutor_email': tutor_email, 'startTime': startTime.isoformat(), 'endTime': endTime.isoformat() })
+
 
 # format for printing data
 # def printData():
 #   ref = db.reference('/')
 #   print(ref.get())
 
-uploadUser('exampleStudent.json')
-print(getUser('student@email___dot___com'))
-setAvailability()
+# uploadUser('exampleStudent.json')
+# print(getUser('student@email___dot___com'))
+# setAvailability('student@email___dot___com', True)
+setAvailability('student@email___dot___com', False)
