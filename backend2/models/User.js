@@ -36,6 +36,26 @@ const userSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  zoom: {
+    type: String,
+    required: false,
+  },
+  points: {
+    type: Number,
+    required: true,
+  },
+  hours: {
+    type: Number,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  profileLink: {
+    type: String,
+    required: false,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
