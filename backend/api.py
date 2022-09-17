@@ -72,18 +72,24 @@ availableTutors = ref.child('availableTutors/')
 clocks = ref.child('clocks/')
 tutoringHistory = ref.child('tutoringHistory/')
 
+# get all available tutors:
+def get_availability():
+  return availableTutors.get()
+
 # Tutor clocking in
 def clockIn(tutor_email: str):
   # create a new clock in for the tutor in the clocks table
-
   user = getUser(tutor_email)
-  availableTutors.update({tutor_email: {'zoom': user.get('zoom'), 'sessionStartTime': None, 'available': True, }})
+  availableTutors.update({tutor_email: {'zoom': user.get('zoom'), 'sessionStartTime': None, 'available': True }})
   return True
 
+# clocking out
 def clockOut(tutor_email:str):
   # Add the clock out time in the clocks table
   # remove the tutor from the available tutors
-  availableTutors.update({tutor_email: {'available': False,}})
+  availability = get_availability()
+  availability.pop(tutor_email)
+  availableTutors.set(availability)
   return True
   
 # student requesting a tutor
@@ -109,4 +115,3 @@ def endSession(tutor_email:str):
 # uploadUser('exampleStudent.json')
 # print(getUser('student@email___dot___com'))
 # setAvailability('student@email___dot___com', True)
-setAvailability('student@email___dot___com', False)
