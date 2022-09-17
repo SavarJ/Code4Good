@@ -129,14 +129,16 @@ app.post("/login", async (req, res) => {
   const password = req.body.password;
   const user = await User.findOne({ email });
 
-  if (user && bcrypt.compare(password, user.password)) {
-    res.status(201).json({
+  if (user && (await bcrypt.compare(password, user.password))) {
+    return res.status(201).json({
+      errorCode: 200,
       name: user.name,
       email: user.email,
+      isTutor: user.isTutor,
       token: generateToken(user.email),
     });
   }
-  res.status(400).json({ message: "Invalid Credentials" });
+  res.status(200).json({ errorCode: 500, message: "Invalid Credentials" });
 });
 
 app.post("/signup", async (req, res) => {
