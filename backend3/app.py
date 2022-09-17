@@ -16,23 +16,32 @@ TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN= os.environ.get('TWILIO_AUTH_TOKEN')
 VERIFY_SERVICE_SID= os.environ.get('VERIFY_SERVICE_SID')
 SALT_KEY= bcrypt.gensalt()
-
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-#KNOWN_PARTICIPANTS = app.config['KNOWN_PARTICIPANTS']
-#KNOWN_PARTICIPANTS['natu2002@gmail.com'] = '+12404779604'
+def checkPassword(email,password):
+  user = api.get_user(email)
+  enc = password.encode('utf-8')
+  hashed = bcrypt.hashpw(enc, SALT_KEY)
+  api.update_user(email, {'password': hashed.decode('utf-8')})
+  if user.password == hashed: 
+    return True
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
         email = request.get_json()['email']
+        password = request.get_json()['password']
         user = api.get_user(email)
-        #password = request.get_json()['password']
         if api.does_user_exist(email):
             session['username'] = email
+            # verify password
+            checkPassword(email, password)
+            
             send_verification(user)
-            return redirect(url_for('verify_passcode_input'))
+            return {"Status": "Verification Code Sent"}
+            #return redirect(url_for('verify_passcode_input'))
         error = "User not found. Please try again."
         return render_template('index.html', error = error)
     return render_template('index.html')
@@ -40,7 +49,9 @@ def login():
 @app.route('/', methods=['GET', 'POST'])
 # ...
 def send_verification(user):
+    print("HERE")
     phone = user['phoneNumber']
+    print(phone)
     client.verify \
         .services(VERIFY_SERVICE_SID) \
         .verifications \
@@ -50,15 +61,15 @@ def send_verification(user):
 def verify_passcode_input():
     email = session['username']
     phone = api.get_user(email)['phoneNumber']
+    verification_code = request.get_json()['code']
     error = None
     if request.method == 'POST':
-        verification_code = request.form['verificationcode']
         if check_verification_token(phone, verification_code):
-            return render_template('success.html', username = username)
+            return render_template('success.html', username = email)
         else:
             error = "Invalid verification code. Please try again."
             return render_template('verifypage.html', error = error)
-    return render_template('verifypage.html', username = username)
+    return render_template('verifypage.html', username = email)
   
 def check_verification_token(phone, token):
     check = client.verify \
