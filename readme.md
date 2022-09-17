@@ -38,18 +38,14 @@ Leaderboard and rating system
   - Focused on backend development, managing the API library and endpoints
   - Mentored in git merging and branching to help team members push their changes
   - Wrote this readme!!
-- Natu
-- Jake  
-  - Designed and implemented Sign in, Sign up, dashboard, and navbar components on the frontend
-  - Developed and planned out Express/Node.js API with Savar
-  - Laid out mongodb database architecture
-  - Pair programmed with several team members to 
+- Nethaniel
+    - (Co-worked with Akhil)
+      - Installed and integreted Twilio REST-API to our local repository
+      - Validated authentication of new/existing users
+      - Utilized encryption hashing of user passcode to ensure account security
+- Jake
 - Muhaimin
 - Akhil
-  - Co-worked with Nethaniel 
-    - Integrated Twilio REST-API to our local repository and debugged the network issues we were having
-    - Made a linked hashmap which inlcuded
-   - Worked on the final presentation visuals and context  
 - Max
   - Developed the entire SwiftUI portion of the project
   - Created Student and Tutor objects
