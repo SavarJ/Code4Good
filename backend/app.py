@@ -21,7 +21,6 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 KNOWN_PARTICIPANTS = app.config['KNOWN_PARTICIPANTS']
 
 @app.route('/', methods=['GET', 'POST'])
-
 def login():
     error = None
     if request.method == 'POST':
@@ -34,7 +33,6 @@ def login():
         return render_template('index.html', error = error)
     return render_template('index.html')
 
-
 @app.route('/', methods=['GET', 'POST'])
 # ...
 def send_verification(username):
@@ -43,7 +41,6 @@ def send_verification(username):
         .services(VERIFY_SERVICE_SID) \
         .verifications \
         .create(to=phone, channel='sms')
-
 
 @app.route('/verifyme', methods=['GET', 'POST'])
 def verify_passcode_input():
@@ -58,8 +55,7 @@ def verify_passcode_input():
             error = "Invalid verification code. Please try again."
             return render_template('verifypage.html', error = error)
     return render_template('verifypage.html', username = username)
-
-
+  
 def check_verification_token(phone, token):
     check = client.verify \
         .services(VERIFY_SERVICE_SID) \
@@ -77,6 +73,19 @@ def getUser():
   email = request.get_json()['email'].replace('___dot___', '.')
   return jsonify(api.get_user())
 
+@app.route('/clockIn', methods=['POST'])
+def clockIn():
+  # takes in {"tutor_email": "email"}
+  tutor_email = request.get_json().replace('.','___dot___')
+  return api.clockIn(tutor_email)
+
+@app.route('/clockOut', methods=['POST'])
+def clockIn():
+  # takes in {"tutor_email": "email"}
+  tutor_email = request.get_json().replace('.','___dot___')
+  return api.clockOut(tutor_email)
+
+
 @app.route('/getAvailability', methods=['GET'])
 def get_availability():
   pass
@@ -84,6 +93,8 @@ def get_availability():
 @app.route('/setAvailability', methods=['GET'])
 def set_availability():
   pass
+
+
 
 @app.route("/createuser/", methods=["PUT"])
 def create_user():
