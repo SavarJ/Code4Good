@@ -1,7 +1,9 @@
+import User from './models/User';
+
 const jwt = require('jsonwebtoken')
 const asyncHandler = require('express-async-handler')
 const User = require('../model/userModel')
-
+const JWT_SECRET = abc123;
 const protect = asyncHandler(async (req,res,next)=>{
     let token; 
 
@@ -9,9 +11,9 @@ const protect = asyncHandler(async (req,res,next)=>{
     try{
         token = req.headers.authorization.split(' ')[1]//store email in bearer token
 
-        const decoded =jwt.verify(token, process.env.JWT_SECRET)
+        const decoded =jwt.verify(token, JWT_SECRET)
 
-        req.user = await User.findByEmail(decoded.email).select('-password')
+        req.user = await User.findOne(decoded.email).select('-password')
         next()
 
     }
