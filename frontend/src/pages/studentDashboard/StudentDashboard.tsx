@@ -9,7 +9,7 @@ export const StudentDashboard = () => {
     <div>
       <Student_NavBar></Student_NavBar>
       <Typography variant="h5" >Student Drop In </Typography>
-      
+      <></>
     </div>
   )
 }
