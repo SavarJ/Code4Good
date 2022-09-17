@@ -84,7 +84,7 @@ def clockIn(tutor_email: str):
   # create a new clock in for the tutor in the clocks table
   user = get_user(tutor_email)
   availableTutors.update({tutor_email: {'zoom': user.get('zoom'), 'sessionStartTime': None, 'available': True, 'clockInTime': datetime.now().isoformat() }})
-  return True
+  return {'return': True}
 
 # clocking out
 def clockOut(tutor_email:str):
@@ -96,12 +96,13 @@ def clockOut(tutor_email:str):
   now = datetime.now()
   clocked_in_hours = (now - datetime.fromisoformat(tutor_info['clockInTime'])).total_seconds()/3600
   tutor = get_user(tutor_email)
+  #print(tutor)
   tutor['data']['total_hours'] += clocked_in_hours
   update_user(tutor_email, tutor)
   #clocks.set({"test": "est"})
   #print({tutor_info['clockInTime']: now.isoformat()})
   clocks.child(tutor_email).update({tutor_info['clockInTime'].replace('.','-'): now.isoformat().replace('.','-')})
-  return True
+  return {'return': True}
   
 # student requesting a tutor
 def startSession(tutor_email:str):
@@ -126,7 +127,7 @@ def endSession(tutor_email:str):
 #upload_user_by_file('exampleTutor.json')
 # print(get_user('student@email___dot___com'))
 # setAvailability('student@email___dot___com', True)
-clockIn('tutor@email___dot___com')
-print(get_availability())
-clockOut('tutor@email___dot___com')
+#clockIn('tutor@email___dot___com')
+#print(get_availability())
+#clockOut('tutor@email___dot___com')
 # print(get_availability())

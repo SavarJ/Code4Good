@@ -73,27 +73,26 @@ def getUser():
   email = request.get_json()['email'].replace('___dot___', '.')
   return jsonify(api.get_user())
 
-@app.route('/clockIn', methods=['POST'])
+@app.route('/clockIn/', methods=['POST'])
 def clockIn():
-  # takes in {"tutor_email": "email"}
-  tutor_email = request.get_json().replace('.','___dot___')
+  # takes in {"email": "email"}
+  tutor_email = request.get_json()['email'].replace('.','___dot___')
   return api.clockIn(tutor_email)
 
-@app.route('/clockOut', methods=['POST'])
-def clockIn():
-  # takes in {"tutor_email": "email"}
-  tutor_email = request.get_json().replace('.','___dot___')
+@app.route('/clockOut/', methods=['POST'])
+def clockOut():
+  # takes in {"email": "email"}
+  tutor_email = request.get_json()['email'].replace('.','___dot___')
   return api.clockOut(tutor_email)
 
 
-@app.route('/getAvailability', methods=['GET'])
+@app.route('/getAvailability/', methods=['GET'])
 def get_availability():
   pass
 
-@app.route('/setAvailability', methods=['GET'])
+@app.route('/setAvailability/', methods=['GET'])
 def set_availability():
   pass
-
 
 
 @app.route("/createuser/", methods=["PUT"])
