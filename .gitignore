@@ -22,3 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 backend/jream-6e78b-4dc9a2d412e6.json
+
+venv/
