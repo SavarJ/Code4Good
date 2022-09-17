@@ -74,7 +74,8 @@ def hello_world():
 @app.route("/getuser/", methods=["GET"])
 def getUser():
   # takes in {'email': email } data
-  return jsonify(api.getUser(request.get_json()['email']))
+  email = request.get_json()['email'].replace('___dot___', '.')
+  return jsonify(api.getUser())
 
 @app.route('/getAvailability', methods=['GET'])
 def get_availability():
@@ -86,8 +87,10 @@ def set_availability():
 
 @app.route("/createuser/", methods=["PUT"])
 def create_user():
-  if (api.verify(request.get_json())):
-      return jsonify(api.uploadUser((request.get_json())))
+  user_profile = request.get_json()
+  if (api.verify(user_profile)):
+      user_profile['email'].replace('.','___dot___')
+      return jsonify(api.uploadUser(user_profile))
   else: 
     return {"Error": "Validation Error"}
 
