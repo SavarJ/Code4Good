@@ -111,6 +111,12 @@ app.post("/endsession", async (req, res) => {
   return res.status(200).send("Session ended");
 });
 
+app.get("/leaderboard", async (req, res) => {
+  const users = await User.find();
+  users.filter((user) => user.isTutor).sort((a, b) => b.points - a.points);
+  return res.status(200).send(users);
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
