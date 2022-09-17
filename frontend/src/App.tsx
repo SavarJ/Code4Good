@@ -7,7 +7,7 @@ import { StudentDashboard } from "./pages/studentDashboard/StudentDashboard";
 import Dashboard from "./pages/tutorDashboard";
 import TutorDropIn from "./pages/tutorDashboard/TutorDropIn.jsx";
 import Profile from "./pages/profile";
-import Tutor_Feed from "./pages/studentDashboard/Tutor_Feed";
+import TutorFeed from "./pages/studentDashboard/TutorFeed";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/auth/signup" element={<SignUp />} />
         <Route path="/studentdashboard" element={<StudentDashboard />} />
         <Route path="/tutordashboard" element={<Dashboard />} />
-        <Route path="/tutorfeed" element={<Tutor_Feed />} />
+        <Route path="/tutorfeed" element={<TutorFeed />} />
         <Route path="/tutordropin" element={<TutorDropIn />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
