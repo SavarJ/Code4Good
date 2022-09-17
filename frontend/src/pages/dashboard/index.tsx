@@ -7,7 +7,6 @@ const Dashboard: React.FC = () => {
       <h1>Dashboard</h1>
       <Leaderboard />
       <DropIn/> 
-      <h2>Hi</h2>
     </div>
   );
 };
