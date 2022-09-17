@@ -59,7 +59,7 @@ app.post("/clockout", async (req, res) => {
     return;
   }
 
-  tutor.available = False;
+  tutor.available = false;
   tutor.sessionEndTime = new Date();
   clocked = clockins.find((clockin) => clockin.userEmail === tutorEmail);
   clocked.endTime = new Date();
