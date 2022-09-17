@@ -35,6 +35,7 @@ const usersTemp = [
 
 export default function Tutor_Feed() {
   const [users, setUsers] = useState(usersTemp)
+  const [showSidePanel, setShowSidePanel] = useState(false)
   useEffect(() => {
     async function fetchData() {
       await fetch("http://localhost:5050/available/tutors")
@@ -77,6 +78,7 @@ export default function Tutor_Feed() {
           <Button>Choose This Tutor</Button>
         </Grid>
       </Grid>
+      {/* <Item xs={2}> hi</Item> */}
     </Grid>
   );
 }
