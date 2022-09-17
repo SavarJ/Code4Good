@@ -24,9 +24,13 @@ def readJSON(filename):
 
 # api for managing new users
 
-def uploadUser(file):
+def uploadUserByFile(file):
   users = ref.child(f'users/')
   data = readJSON(file)
+  users.update(data)
+  
+def uploadUser(data):
+  users = ref.child(f'users/')
   users.update(data)
   
 def getUser(email): 
