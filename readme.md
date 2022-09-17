@@ -47,7 +47,7 @@ Leaderboard and rating system
 - Muhaimin
 - Akhil
   - (Co-worked with Nethaniel)
-    - HELLLOOO
+    - Integrated Twilio REST-Api to local repo and dubgged network and auth errors
     - WORRKKK   
   - Worked with a new theme for the final presentation and did visuals on some slides.
 - Max
