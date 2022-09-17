@@ -2,12 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-
+const bcrypt = require("bcrypt");
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const JWT_SECRET = abc123;
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -146,7 +146,8 @@ res.status(400).json({message:"Invalid Credentials"})
 
 app.post("/signup", async (req, res) => {
    const {email, password,fname,lname,dob,phone,isTutor} = req.body
-  if(!fname || !lname || !dob || !phone || !isTutor || !email || !password){
+   console.log(email);
+  if(!phone ){
       res.status(400)
       throw new Error("Please add all info fields")
   }
@@ -188,8 +189,6 @@ const generateToken = (email) =>{
   return jwt.sign({email}, process.env.JWT_SECRET,{expiresIn:'30d'})
 }
 
-app.listen(5000, () => {
-  console.log("Server started on port 5000");
 app.get("/leaderboard", async (req, res) => {
   let users = await User.find();
   users = users.filter((user) => user.isTutor);
@@ -200,18 +199,3 @@ app.get("/leaderboard", async (req, res) => {
 app.listen(5050, () => {
   console.log("Server started on port 5050");
 });
-
-// async function createNewUser() {
-//   const newuser = new User({
-//     email: "natu2002@gmail.com",
-//     password: "123456",
-//     fname: "Natu",
-//     lname: "Berhane",
-//     isTutor: true,
-//     phone: "1010101010",
-//     zoom: "https://zoom.us/j/10101010",
-//     dob: "1990-01-01",
-//   });
-
-//   await newuser.save();
-// }

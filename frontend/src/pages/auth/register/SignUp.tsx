@@ -19,6 +19,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import Stack from "@mui/material/Stack";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import userEvent from "@testing-library/user-event";
 
 
 const theme = createTheme();
@@ -40,16 +41,18 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    axios.put("/createuser/",({
+    let resData = ({
       email: data.get('email'),
       password: data.get('password'),
       fname: data.get('firstName'),
       lname: data.get('lastName'),
-      birthday: data.get('dateOfBirth'),
-      phoneNumber: data.get('phoneNumber'),
-      role : 'Student'
+      dob: data.get('dateOfBirth'),
+      phone: data.get('phoneNumber'),
+      isTutor : ((accountType == "Tutor") ? true : false),
 
-    }));
+    })
+    console.log(resData);
+    axios.post("http://localhost:5050/signup", data);
   };
 
   return (
@@ -140,7 +143,7 @@ export default function SignUp() {
                 {/* Date of Birth */}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
-                    label="Date desktop"
+                    label="Date of Birth"
                     inputFormat="MM/DD/YYYY"
                     value={value}
                     onChange={handleDateChange}
