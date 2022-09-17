@@ -7,6 +7,7 @@ import StudentSignUp from "./pages/auth/register/StudentSignUp";
 import TutorSignUp from "./pages/auth/register/TutorSignUp";
 import {StudentDashboard} from "./pages/StudentDashboard";
 import { TutorDashboard } from "./pages/TutorDashboard";
+
 function App() {
   return (
     <Router>
@@ -16,7 +17,6 @@ function App() {
         <Route path="/auth/studentsignup" element={<StudentSignUp />} />
         <Route path="/studentdashboard" element={<StudentDashboard />} />
         <Route path="/tutordashboard" element={<TutorDashboard />} />
-
       </Routes>
     </Router>
   );
