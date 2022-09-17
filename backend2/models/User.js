@@ -25,7 +25,7 @@ const userSchema = new Schema({
   },
   dob: {
     type: String,
-    required: true,
+    required: false,
   },
   phone: {
     type: String,

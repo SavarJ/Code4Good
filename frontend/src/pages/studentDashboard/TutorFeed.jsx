@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Student_NavBar from "./StudentNavBar";
 import "./TutorFeed.css";
+
 import axios from "axios";
 
 const usersTemp = [
@@ -52,6 +53,7 @@ export default function Tutor_Feed() {
     axios.post('/book', {'tutorEmail': removeTutor})
   }  
 
+
   return (
     <Grid columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Student_NavBar></Student_NavBar>
@@ -69,12 +71,13 @@ export default function Tutor_Feed() {
                 </div>
                 <div>
                   <Button onClick={()=>bookTutor(setUsers,user.email)}>Book</Button>
+
                 </div>
                 <br />
               </div>
             );
           })}
-          <Button>Choose This Tutor</Button>
+          {/* <Button>Choose This Tutor</Button> */}
         </Grid>
       </Grid>
     </Grid>

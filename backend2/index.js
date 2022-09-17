@@ -2,12 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-
+const bcrypt = require("bcrypt");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 app.use(cors());
 app.use(express.json());
 
-const JWT_SECRET = abc123;
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -124,97 +124,70 @@ app.post("/endsession", async (req, res) => {
   return res.status(200).send("Session ended");
 });
 
-<<<<<<< HEAD
 app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const user = await User.findOne({email});
+  const user = await User.findOne({ email });
 
-
-  if(user && bcrypt.compare(password, user.password)){
-    res.status(201).json({
-        name:user.name,
-        email:user.email,
-        token:generateToken(user.email)
-    })
-}
-res.status(400).json({message:"Invalid Credentials"})
-
-
-
+  if (user && (await bcrypt.compare(password, user.password))) {
+    return res.status(201).json({
+      errorCode: 200,
+      name: user.name,
+      email: user.email,
+      isTutor: user.isTutor,
+      token: generateToken(user.email),
+    });
+  }
+  res.status(200).json({ errorCode: 500, message: "Invalid Credentials" });
 });
-
 
 app.post("/signup", async (req, res) => {
-   const {email, password,fname,lname,dob,phone,isTutor} = req.body
-  if(!fname || !lname || !dob || !phone || !isTutor || !email || !password){
-      res.status(400)
-      throw new Error("Please add all info fields")
+  console.log("req.body", req.body);
+  const { email, password, fname, lname, dob, phone, isTutor } = req.body;
+  if (!fname || !lname || !phone || isTutor == null || !email || !password) {
+    res.status(400);
+    throw new Error("Please add all info fields");
   }
-  const userExists = await User.findOne({email})
-  if(userExists){
-      res.status(400)
-      throw new Error("This email is already in use")
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error("This email is already in use");
   }
-  
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
   const user = await User.create({
-      fname,
-      lname,
-      dob,
-      phone,
-      isTutor,
-      email,
-      password: hashedPassword
-  })
-  if(user){
-      res.status(201).json({
-          email:user.email,
-          token:generateToken(user.email)
-      })
+    fname,
+    lname,
+    dob,
+    phone,
+    isTutor,
+    email,
+    password: hashedPassword,
+  });
+  if (user) {
+    res.status(201).json({
+      email: user.email,
+      token: generateToken(user.email),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user Data");
   }
-  else {
-      res.status(400)
-      throw new Error("Invalid user Data")
-  }
-  
-
-
-
 });
 
-const generateToken = (email) =>{
-  return jwt.sign({email}, process.env.JWT_SECRET,{expiresIn:'30d'})
-}
+const generateToken = (email) => {
+  return jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "30d" });
+};
 
-app.listen(5000, () => {
-  console.log("Server started on port 5000");
-=======
 app.get("/leaderboard", async (req, res) => {
   let users = await User.find();
   users = users.filter((user) => user.isTutor);
   users.sort((a, b) => b.points - a.points);
   return res.status(200).send(users);
->>>>>>> 5217929c369ed04995462b57bf9291909459c1da
 });
 
 app.listen(5050, () => {
   console.log("Server started on port 5050");
 });
-
-// async function createNewUser() {
-//   const newuser = new User({
-//     email: "natu2002@gmail.com",
-//     password: "123456",
-//     fname: "Natu",
-//     lname: "Berhane",
-//     isTutor: true,
-//     phone: "1010101010",
-//     zoom: "https://zoom.us/j/10101010",
-//     dob: "1990-01-01",
-//   });
-
-//   await newuser.save();
-// }
