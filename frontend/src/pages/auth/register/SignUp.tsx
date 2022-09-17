@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Axios from "Axios";
+import axios from "axios";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
@@ -40,25 +40,16 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    /*Axios.post("/users",({
+    axios.put("/createuser/",({
       email: data.get('email'),
       password: data.get('password'),
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      dateOfBirth: data.get('dateOfBirth'),
+      fname: data.get('firstName'),
+      lname: data.get('lastName'),
+      birthday: data.get('dateOfBirth'),
       phoneNumber: data.get('phoneNumber'),
-      role : 'student'
+      role : 'Student'
 
-    }));*/
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      dateOfBirth: data.get("dateOfBirth"),
-      phoneNumber: data.get("phoneNumber"),
-      role: "student",
-    });
+    }));
   };
 
   return (
