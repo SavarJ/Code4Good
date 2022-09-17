@@ -86,8 +86,9 @@ def set_availability():
 
 @app.route("/createuser/", methods=["PUT"])
 def create_user():
-  # TODO: verification
-  # api.verify()
-  return jsonify(api.uploadUser((request.get_json())))
+  if (api.verify(request.get_json())):
+      return jsonify(api.uploadUser((request.get_json())))
+  else: 
+    return {"Error": "Validation Error"}
 
 app.run()
