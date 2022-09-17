@@ -15,10 +15,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/auth/signup" element={<SignUp />} />
-        <Route path="/studentdashboard" element={<StudentDashboard />} />
+        {/* <Route path="/studentdashboard" element={<StudentDashboard />} /> */}
         <Route path="/tutordashboard" element={<Dashboard />} />
-        <Route path="/tutorfeed" element={<TutorFeed />} />
-        <Route path="/tutordropin" element={<TutorDropIn />} />
+        <Route path="/studentdashboard" element={<TutorFeed />} />
+        {/* <Route path="/tutordropin" element={<TutorDropIn />} /> */}
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
