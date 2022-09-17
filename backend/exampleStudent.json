@@ -1,6 +1,7 @@
 {
   "student@email___dot___com": {
     "role": "Student",
+    "password": "password",
     "fname": "first name",
     "lname": "last name",
     "birthday": "DD/MM/YYYY",

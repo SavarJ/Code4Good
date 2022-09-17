@@ -1,10 +1,10 @@
-import Leaderboard from "./leaderboard/Leaderboard";
+import Leaderboard from "./Leaderboard";
+import DropIn from "../../components/DropIn";
 const Dashboard: React.FC = () => {
   return (
     <div>
       {/* <TutorNavBar/> */}
-      <Tutor_Feed></Tutor_Feed>
-      {/* <Leaderboard /> */}
+      <Leaderboard />
       <DropIn/> 
     </div>
   );

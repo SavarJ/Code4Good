@@ -1,6 +1,7 @@
 {
   "tutor@email___dot___com": {
     "role": "Tutor",
+    "password": "password",
     "fname": "first name",
     "lname": "last name",
     "birthday": "DD/MM/YYYY",
@@ -14,7 +15,7 @@
     }, 
     "data": {
       "available": false,
-      "totalHours": 0,
+      "total_hours": 0,
       "points": 0
     },
     "sessionsData": [ ["time", "rating"] ]

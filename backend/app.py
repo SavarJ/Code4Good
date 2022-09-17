@@ -23,7 +23,6 @@ KNOWN_PARTICIPANTS = app.config['KNOWN_PARTICIPANTS']
 KNOWN_PARTICIPANTS['natu2002@gmail.com'] = '+12404779604'
 
 @app.route('/', methods=['GET', 'POST'])
-
 def login():
     error = None
     if request.method == 'POST':
@@ -36,7 +35,6 @@ def login():
         return render_template('index.html', error = error)
     return render_template('index.html')
 
-
 @app.route('/', methods=['GET', 'POST'])
 # ...
 def send_verification(username):
@@ -45,7 +43,6 @@ def send_verification(username):
         .services(VERIFY_SERVICE_SID) \
         .verifications \
         .create(to=phone, channel='sms')
-
 
 @app.route('/verifyme', methods=['GET', 'POST'])
 def verify_passcode_input():
@@ -60,8 +57,7 @@ def verify_passcode_input():
             error = "Invalid verification code. Please try again."
             return render_template('verifypage.html', error = error)
     return render_template('verifypage.html', username = username)
-
-
+  
 def check_verification_token(phone, token):
     check = client.verify \
         .services(VERIFY_SERVICE_SID) \
@@ -72,11 +68,12 @@ def check_verification_token(phone, token):
 #@app.route("/")
 #def hello_world():
     #return "<p>Hello, World!</p>"
-
+    
 @app.route("/getuser/", methods=["GET"])
 def getUser():
-    #takes in {'email': email }
-    return jsonify(api.getUser(request.get_json()['email']))
+  # takes in {'email': email } data
+  email = request.get_json()['email'].replace('___dot___', '.')
+  return jsonify(api.get_user())
 
 @app.route("/createuser/", methods=["PUT"])
 def createUser():
@@ -92,5 +89,37 @@ def createUser():
         return render_template('index.html', error = error)
 
     return jsonify(api.uploadUser((request.get_json())))
+
+
+@app.route('/clockIn/', methods=['POST'])
+def clockIn():
+  # takes in {"email": "email"}
+  tutor_email = request.get_json()['email'].replace('.','___dot___')
+  return api.clockIn(tutor_email)
+
+@app.route('/clockOut/', methods=['POST'])
+def clockOut():
+  # takes in {"email": "email"}
+  tutor_email = request.get_json()['email'].replace('.','___dot___')
+  return api.clockOut(tutor_email)
+
+
+@app.route('/getAvailability/', methods=['GET'])
+def get_availability():
+  pass
+
+@app.route('/setAvailability/', methods=['GET'])
+def set_availability():
+  pass
+
+
+@app.route("/createuser/", methods=["PUT"])
+def create_user():
+  user_profile = request.get_json()
+  if (api.verify(user_profile)):
+      user_profile['email'].replace('.','___dot___')
+      return jsonify(api.upload_user(user_profile))
+  else: 
+    return {"Error": "Validation Error"}
 
 app.run()

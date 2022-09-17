@@ -74,16 +74,13 @@ export default function SignIn() {
               <Grid item xs>
               </Grid>
               <Grid item>
-              <Link href="/auth/tutorsignup" variant="body2">
-                  Are you a new tutor? Create an account.
+              <Link href="/auth/signup" variant="body2">
+                  Sign up for a new account.
                 </Link>
               </Grid>
               <Grid item xs>
               </Grid>
               <Grid item></Grid>
-              <Link href="/auth/studentsignup" variant="body2">
-                  Are you a new student? Create an account.
-                </Link>
               </Grid>
           </Box>
         </Box>
