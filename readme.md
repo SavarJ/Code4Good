@@ -42,6 +42,9 @@ Leaderboard and rating system
 - Jake
 - Muhaimin
 - Akhil
+  - Co-worked with Nethaniel 
+    - Integrated Twilio REST-API to our local repository
+    - 
 - Max
   - Developed the entire SwiftUI portion of the project
   - Created Student and Tutor objects
