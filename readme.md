@@ -43,8 +43,8 @@ Leaderboard and rating system
 - Muhaimin
 - Akhil
   - Co-worked with Nethaniel 
-    - Integrated Twilio REST-API to our local repository
-    - 
+    - Integrated Twilio REST-API to our local repository and debugged the network issues we were having
+    - Worked on the final presentation visuals and context  
 - Max
   - Developed the entire SwiftUI portion of the project
   - Created Student and Tutor objects
