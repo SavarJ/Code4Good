@@ -39,7 +39,17 @@ Leaderboard and rating system
   - Mentored in git merging and branching to help team members push their changes
   - Wrote this readme!!
 - Natu
-- Jake
+- Jake  
+  - Designed and implemented Sign in, Sign up, dashboard, and navbar components on the frontend
+  - Developed and planned out Express/Node.js API with Savar
+  - Laid out mongodb database architecture
+  - Pair programmed with several team members to 
 - Muhaimin
 - Akhil
+  - Co-worked with Nethaniel 
+    - Integrated Twilio REST-API to our local repository and debugged the network issues we were having
+    - Worked on the final presentation visuals and context  
 - Max
+  - Developed the entire SwiftUI portion of the project
+  - Created Student and Tutor objects
+  - Created a Feed of Tutors populated with test data that the user could explore
