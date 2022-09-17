@@ -55,7 +55,7 @@ const userSchema = new Schema({
     default: [],
     required: true,
   },
-  profileLink: {
+  link: {
     type: String,
     required: false,
   },
