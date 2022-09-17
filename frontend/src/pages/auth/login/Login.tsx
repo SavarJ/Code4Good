@@ -11,17 +11,42 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 const theme = createTheme();
 
 export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    const formdata = new FormData(event.currentTarget);
+    const customConfig = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    var data = JSON.stringify({
+      "email": formdata.get('email'),
+      "password": formdata.get('password')
     });
+    var config = {
+      method: 'post',
+      url: 'http://127.0.0.1:5000/',
+      headers: { 
+        'Content-Type': 'application/json', 
+        'Cookie': 'session=eyJ1c2VybmFtZSI6InN0dWRlbnRAZW1haWxfX19kb3RfX19jb20ifQ.YyWY3w.cZzstkMBGWnAzyRIKvqX5w3uNPw',
+        "Access-Control-Allow-Origin": '*'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
   };
 
   return (
@@ -74,17 +99,17 @@ export default function SignIn() {
               <Grid item xs>
               </Grid>
               <Grid item>
-              <Link href="/auth/signup" variant="body2">
+                <Link href="/auth/signup" variant="body2">
                   Sign up for a new account.
                 </Link>
               </Grid>
               <Grid item xs>
               </Grid>
               <Grid item></Grid>
-              </Grid>
+            </Grid>
           </Box>
         </Box>
-        
+
       </Container>
     </ThemeProvider>
   );
