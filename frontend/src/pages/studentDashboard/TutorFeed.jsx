@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
@@ -6,6 +6,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Student_NavBar from "./StudentNavBar";
+import Box from '@mui/material/Box';
 import "./TutorFeed.css";
 import axios from "axios";
 
@@ -35,6 +36,7 @@ const usersTemp = [
 
 export default function Tutor_Feed() {
   const [users, setUsers] = useState(usersTemp)
+  const [selectedUser, setSelectedUser] = useState({})
   const [showSidePanel, setShowSidePanel] = useState(false)
   useEffect(() => {
     async function fetchData() {
@@ -48,37 +50,57 @@ export default function Tutor_Feed() {
   });
 
   // helper function - book tutor :
-  function bookTutor(setUsers, removeTutor) {
-    setUsers(users.filter(user => user['email'] != removeTutor));
-    axios.post('/book', {'tutorEmail': removeTutor})
-  }  
+  function selectBookTutor(setUsers, removeTutor) {
+    // setUsers(users.filter(user => user['email'] != removeTutor));
+    // axios.post('http://localhost:5050/book', { 'tutorEmail': removeTutor })
+    setShowSidePanel(true)
+  }
+  function confirmBookTutor(setUsers, user) {
+    setUsers(users.filter(user => user['email'] != user.email));
+    axios.post('http://localhost:5050/book', { 'tutorEmail': user.email })
+    window.open(user.zoom, '_blank')
+  }
+
 
   return (
-    <Grid columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Student_NavBar></Student_NavBar>
-      <Grid item xs={6}>
-        <Typography variant="h5">Tutor Feed</Typography>
-        <Grid className="tutor-feed-grid">
-          {users.map((user) => {
-            return (
-              <div className="tutor-feed">
-                <div>
-                  <Avatar src={user.link}></Avatar>
-                  <Typography>Name: {user.name}</Typography>
-                  <Typography component="legend">Points: {user.points} </Typography>
-                  {/* <Rating name="read-only" value={user.rating} readOnly /> */}
+    <>
+      <Grid columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Student_NavBar></Student_NavBar>
+        <Grid item xs={6}>
+          <Typography variant="h5">Tutor Feed</Typography>
+          <Grid className="tutor-feed-grid">
+            {users.map((user) => {
+              return (
+                <div className="tutor-feed">
+                  <div>
+                    <Avatar src={user.link}></Avatar>
+                    <Typography>Name: {user.name}</Typography>
+                    <Typography component="legend">Points: {user.points} </Typography>
+                    {/* <Rating name="read-only" value={user.rating} readOnly /> */}
+                  </div>
+                  <div>
+                    <Button onClick={() => selectBookTutor(setUsers, user)}>Book</Button>
+                  </div>
+                  <br />
                 </div>
-                <div>
-                  <Button onClick={()=>bookTutor(setUsers,user.email)}>Book</Button>
-                </div>
-                <br />
-              </div>
-            );
-          })}
-          <Button>Choose This Tutor</Button>
+              );
+            })}
+            <Button>Choose This Tutor</Button>
+          </Grid>
         </Grid>
       </Grid>
-      {/* <Item xs={2}> hi</Item> */}
-    </Grid>
+      <SidePanel showSidePanel={showSidePanel} confirmBookTutor={confirmBookTutor} selectedUser={selectedUser} setUsers={setUsers}/>
+    </>
   );
+}
+
+function SidePanel({ showSidePanel, confirmBookTutor, user, setUsers }) {
+
+  if (showSidePanel) {
+    return (<>
+        <Box className='tutor-feed'>
+          <Button onClick={() => confirmBookTutor(setUsers,user)}>CONFIRM</Button>
+        </Box>
+      </>)
+  } else return <></>
 }
