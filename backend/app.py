@@ -90,7 +90,6 @@ def createUser():
         KNOWN_PARTICIPANTS[username] = hashed
         error = "User not found. Please try again."
         return render_template('index.html', error = error)
-    #return render_template('index.html')
 
     return jsonify(api.uploadUser((request.get_json())))
 
