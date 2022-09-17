@@ -53,3 +53,4 @@ Leaderboard and rating system
   - Developed the entire SwiftUI portion of the project
   - Created Student and Tutor objects
   - Created a Feed of Tutors populated with test data that the user could explore
+  - Run Xcode project to see Tutor Feed!
