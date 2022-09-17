@@ -53,7 +53,11 @@ export default function SignUp() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(resData),
-    }).then((response) => response.json());
+    }).then((response) => {
+      response.json();
+      alert("Account Created");
+      window.location.href = "/";
+    });
   };
 
   return (
