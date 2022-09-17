@@ -80,17 +80,18 @@ def getUser():
 @app.route("/createuser/", methods=["PUT"])
 def createUser():
     error = None
-    username = session['username']
-    password = request.get_json()['email']
-    if username in KNOWN_PARTICIPANTS:
-        password = request.form['password']
+    email = session['username']
+    if api.does_user_exist(email):
+        password = request.get_json()['password']
+        user = api.get_user(email)
         enc = password.encode('utf-8')
         hashed = bcrypt.hashpw(enc, SALT_KEY)
-        KNOWN_PARTICIPANTS[username] = hashed
+        user[password] = hashed
+        api.update_user(email, user)
         error = "User not found. Please try again."
         return render_template('index.html', error = error)
 
-    return jsonify(api.uploadUser((request.get_json())))
+    return jsonify(api.upload_user((request.get_json())))
 
 
 @app.route('/clockIn/', methods=['POST'])
