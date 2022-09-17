@@ -1,9 +1,21 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
+
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => console.log(err));
 
 // current clockins running
 const clockins = [];
@@ -112,11 +124,27 @@ app.post("/endsession", async (req, res) => {
 });
 
 app.get("/leaderboard", async (req, res) => {
-  const users = await User.find();
-  users.filter((user) => user.isTutor).sort((a, b) => b.points - a.points);
+  let users = await User.find();
+  users = users.filter((user) => user.isTutor);
+  users.sort((a, b) => b.points - a.points);
   return res.status(200).send(users);
 });
 
-app.listen(5000, () => {
-  console.log("Server started on port 5000");
+app.listen(5050, () => {
+  console.log("Server started on port 5050");
 });
+
+// async function createNewUser() {
+//   const newuser = new User({
+//     email: "natu2002@gmail.com",
+//     password: "123456",
+//     fname: "Natu",
+//     lname: "Berhane",
+//     isTutor: true,
+//     phone: "1010101010",
+//     zoom: "https://zoom.us/j/10101010",
+//     dob: "1990-01-01",
+//   });
+
+//   await newuser.save();
+// }
