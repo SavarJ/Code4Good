@@ -36,7 +36,7 @@ import axios from "axios";
 // ];
 
 export default function Tutor_Feed() {
-  const [users, setUsers] = useState(usersTemp)
+  const [users, setUsers] = useState()
   const [selectedUser, setSelectedUser] = useState({})
   const [showSidePanel, setShowSidePanel] = useState(false)
   useEffect(() => {
