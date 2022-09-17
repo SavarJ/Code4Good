@@ -46,6 +46,9 @@ Leaderboard and rating system
 - Jake
 - Muhaimin
 - Akhil
+  - (Co-worked with Nethaniel)
+    - HELLLOOO
+    - WORRKKK   
 - Max
   - Developed the entire SwiftUI portion of the project
   - Created Student and Tutor objects
