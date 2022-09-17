@@ -65,10 +65,10 @@
 		C55A3BD528D543F7003C4C51 /* code4goodSwift */ = {
 			isa = PBXGroup;
 			children = (
-				C55A3BF528D59959003C4C51 /* tutorProfile.swift */,
 				C55A3BF428D5574C003C4C51 /* Data */,
 				C55A3BEA28D54EA4003C4C51 /* User */,
 				C55A3BE428D544A4003C4C51 /* tutorListProfile.swift */,
+				C55A3BF528D59959003C4C51 /* tutorProfile.swift */,
 				C55A3BD628D543F7003C4C51 /* code4goodSwiftApp.swift */,
 				C55A3BD828D543F7003C4C51 /* ContentView.swift */,
 				C55A3BF728D5AF13003C4C51 /* Formatting */,

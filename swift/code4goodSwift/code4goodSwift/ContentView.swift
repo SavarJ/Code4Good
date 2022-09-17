@@ -15,13 +15,10 @@ struct ContentView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-            //NavigationView {
                 VStack {
-                    //Text("Tutors")
-                    //    .foregroundColor(Color.white)
-                    //    .font(.system(size: 45, weight: .bold, design: .default))
                     VStack(spacing: 4) {
                         ForEach(tutorFeed, id: \.id) { tutor in
+                            // each row that has a tutor profile serves as a button to a page with more information about the tutor
                             NavigationLink(
                                 destination: tutorProfile(id: tutor.id),
                                 label: { tutorListProfile(id: tutor.id)}

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// this data will populate the list in the tutor feed
 struct TestData {
     static var tutors: [CreateTutor] = [
         CreateTutor(id: 0, chapter: "Los Angeles, California", firstName: "Trent", lastName: "Arnold", birthday: "Thursday", bio: "Been tutoring for 5 years", zoomLink: "https://rutgers.zoom.us/j/92490401458?pwd=TmJFdGk1RitKNU1nZnVwK2VqWmRXdz09", availableForDropIn: true, totalHours: 10, rating: 5.0, points: 50.0, profilePic: "tutor1"),
