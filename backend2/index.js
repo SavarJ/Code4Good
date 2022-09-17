@@ -124,7 +124,6 @@ app.post("/endsession", async (req, res) => {
   return res.status(200).send("Session ended");
 });
 
-<<<<<<< HEAD
 app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -191,13 +190,11 @@ const generateToken = (email) =>{
 
 app.listen(5000, () => {
   console.log("Server started on port 5000");
-=======
 app.get("/leaderboard", async (req, res) => {
   let users = await User.find();
   users = users.filter((user) => user.isTutor);
   users.sort((a, b) => b.points - a.points);
   return res.status(200).send(users);
->>>>>>> 5217929c369ed04995462b57bf9291909459c1da
 });
 
 app.listen(5050, () => {
