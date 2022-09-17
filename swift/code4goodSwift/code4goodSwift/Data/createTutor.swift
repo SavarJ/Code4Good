@@ -18,14 +18,15 @@ struct CreateTutor: Codable, Identifiable, Equatable, Hashable {
     var zoomLink: String
     var availableForDropIn: Bool
     var totalHours: Int
+    var rating: Double
     var points: Double
     var profilePic: String
-    static let `default` = CreateTutor(id: 0, chapter: "Los Angeles", firstName: "Fake", lastName: "Tutor", birthday: "none", bio: "not real tutor", zoomLink: "fakeurl.com", availableForDropIn: false, totalHours: 0, points: 0.0, profilePic: "tutor1")
+    static let `default` = CreateTutor(id: 0, chapter: "Los Angeles", firstName: "Fake", lastName: "Tutor", birthday: "none", bio: "not real tutor", zoomLink: "fakeurl.com", availableForDropIn: false, totalHours: 0, rating: 0.0, points: 0.0, profilePic: "tutor1")
 }
 
 extension CreateTutor {
     enum CodingKeys: String, CodingKey {
-        case id, chapter, firstName, lastName, birthday, bio, zoomLink, availableForDropIn, totalHours, points, profilePic
+        case id, chapter, firstName, lastName, birthday, bio, zoomLink, availableForDropIn, totalHours, rating, points, profilePic
     }
     
     static func == (lhs: CreateTutor, rhs: CreateTutor) -> Bool {
