@@ -42,14 +42,17 @@ const userSchema = new Schema({
   },
   points: {
     type: Number,
+    default: 0,
     required: true,
   },
   hours: {
     type: Number,
+    default: 0,
     required: true,
   },
   rating: {
     type: Array,
+    default: [],
     required: true,
   },
   profileLink: {
