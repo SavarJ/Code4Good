@@ -3,5 +3,4 @@ KNOWN_PARTICIPANTS = {
   'zelda@hyrule.com': '+15552211986',
   'tetra@hyrule.com': '+15553242003',
   'akhil.reddy@rutgers.edu': '+17326667264'
-
 }
