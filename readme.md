@@ -49,6 +49,7 @@ Leaderboard and rating system
   - (Co-worked with Nethaniel)
     - HELLLOOO
     - WORRKKK   
+  - Worked with a new theme for the final presentation and did visuals on some slides.
 - Max
   - Developed the entire SwiftUI portion of the project
   - Created Student and Tutor objects
