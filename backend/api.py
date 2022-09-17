@@ -58,6 +58,10 @@ def upload_user(data):
   users = ref.child(f'users/')
   users.update(data)
   return users
+
+def does_user_exist(email):
+  users = ref.child(f'users/')
+  return email in users.get()
   
 def get_user(email): 
   users = ref.child(f'users/{email}')

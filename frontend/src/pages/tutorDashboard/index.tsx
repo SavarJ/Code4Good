@@ -5,7 +5,7 @@ const Dashboard: React.FC = () => {
     <div>
       {/* <TutorNavBar/> */}
       <Leaderboard />
-      <DropIn/> 
+      <DropIn />
     </div>
   );
 };

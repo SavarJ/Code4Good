@@ -41,7 +41,7 @@ const Student_NavBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* logo image */}
-        <img src="https://lh3.googleusercontent.com/Gt_blL0psLLDyP4pc-r1c8AWF293jLlXwjYOCY9So5h0KZjvRx2LsOkvb4iBTE_cbxo0yFI=s85"></img>
+        <img height= "50" width= "50" src="https://lh3.googleusercontent.com/Gt_blL0psLLDyP4pc-r1c8AWF293jLlXwjYOCY9So5h0KZjvRx2LsOkvb4iBTE_cbxo0yFI=s85"></img>
           <Typography
             variant="h6"
             noWrap
