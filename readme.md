@@ -33,8 +33,14 @@ Leaderboard and rating system
 - Working together as a team and keeping each other motivated into the night, as well as balancing our individual strengths
 
 ## Contributions
+- Savar
 - Daniel
   - Designed toggle component in react utilzing state hook
   - Focused on backend development, managing the API library and endpoints
   - Mentored in git merging and branching to help team members push their changes
   - Wrote this readme!!
+- Natu
+- Jake
+- Muhaimin
+- Akhil
+- Max
