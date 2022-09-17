@@ -24,17 +24,17 @@ export default function SignIn() {
         "Content-Type": "application/json",
       },
     };
-    var data = JSON.stringify({
+    const data = JSON.stringify({
       email: formdata.get("email"),
       password: formdata.get("password"),
     });
-    var config = {
+    const config = {
       method: "post",
-      url: "http://127.0.0.1:5000/",
+      url: "http://localhost:5050/login",
       headers: {
         "Content-Type": "application/json",
-        Cookie:
-          "session=eyJ1c2VybmFtZSI6InN0dWRlbnRAZW1haWxfX19kb3RfX19jb20ifQ.YyWY3w.cZzstkMBGWnAzyRIKvqX5w3uNPw",
+        // Cookie:
+        //   "session=eyJ1c2VybmFtZSI6InN0dWRlbnRAZW1haWxfX19kb3RfX19jb20ifQ.YyWY3w.cZzstkMBGWnAzyRIKvqX5w3uNPw",
         "Access-Control-Allow-Origin": "*",
       },
       data: data,
@@ -42,7 +42,17 @@ export default function SignIn() {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        if (response.data.errorCode !== 500) {
+          window.localStorage.setItem("useremail", response.data.email);
+          if (response.data.isTutor) {
+            window.location.href = "/tutorDashboard";
+            window.localStorage.setItem("useremail", response.data.email);
+          } else {
+            window.location.href = "/studentDashboard";
+          }
+        } else {
+          alert("Invalid Credentials");
+        }
       })
       .catch(function (error) {
         console.log(error);
