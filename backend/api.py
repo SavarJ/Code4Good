@@ -31,7 +31,7 @@ def uploadUserByFile(file):
   
 def uploadUser(data):
   users = ref.child(f'users/')
-  users.update(data)
+  #users.update(data)
   
 def getUser(email): 
   users = ref.child(f'users/{email}')
