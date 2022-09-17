@@ -45,6 +45,8 @@ Leaderboard and rating system
       - Utilized encryption hashing of user passcode to ensure account security
 - Jake
 - Muhaimin
+  - Focused primarily on front end development, creating Sign In, Sign Up, and various Student/Teacher Components
+  - Designed NavBar Component and Tutor Feed components
 - Akhil
   - (Co-worked with Nethaniel)
     - Integrated Twilio REST-Api to local repo and dubgged network and auth errors
