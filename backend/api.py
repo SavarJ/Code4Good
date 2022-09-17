@@ -39,30 +39,36 @@ def getUser(email):
 
 availableTutors = ref.child('availableTutors/')
 
-# This is when the tutor marks themselves as available
-def setAvailability(email: str, availability: bool) -> str:
-  if availability:
-    user = getUser(email)
-    availableTutors.update({email: {'zoom': user.get('zoom'), 'startTime': None, 'available': True, 'sessionStarted': False}})
-    return True
-  else:
-    user = getUser(email)
-    availableTutors.update({email: {'zoom': user.get('zoom'), 'startTime': None, 'available': False, 'sessionStarted': False}})
+clocks = ref.child('clocks/')
+tutoringHistory = ref.child('tutoringHistory/')
+
+# Tutor clocking in
+def clockIn(tutor_email: str):
+  # create a new clock in for the tutor in the clocks table
+
+  user = getUser(tutor_email)
+  availableTutors.update({tutor_email: {'zoom': user.get('zoom'), 'sessionStartTime': None, 'available': True, }})
+  return True
+
+def clockOut(tutor_email:str):
+  # Add the clock out time in the clocks table
+  # remove the tutor from the available tutors
+  availableTutors.update({tutor_email: {'available': False,}})
+  return True
   
-def getAvailableTutor(tutor_email:str):
+# student requesting a tutor
+def startSession(tutor_email:str):
     # get the user from availableTutors
     tutor = availableTutors.child(tutor_email).get()
-    availableTutors.update({tutor_email: {'zoom': tutor.get('zoom'), 'startTime': datetime.now().isoformat(), 'available': False, 'sessionStarted': True}})
+    availableTutors.update({tutor_email: {'sessionStartTime': datetime.now().isoformat(), 'available': False,}})
     return tutor.get('zoom')
 
+# student ending the session
 def endSession(tutor_email:str):
     tutor = availableTutors.child(tutor_email).get()
-    startTime = datetime.fromisoformat(tutor.get('startTime'))
     endTime = datetime.now()
     availableTutors.child(tutor_email).delete()
     # put this tutoring session into the tutoring history
-    tutoringHistory = ref.child('tutoringHistory/')
-    tutoringHistory.update({'tutor_email': tutor_email, 'startTime': startTime.isoformat(), 'endTime': endTime.isoformat() })
 
 
 # format for printing data
