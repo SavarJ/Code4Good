@@ -86,7 +86,7 @@ export default function Tutor_Feed() {
                 </div>
               );
             })}
-            <Button>Choose This Tutor</Button>
+            <Button onClick={()=>showSidePanel = !showSidePanel}>Choose This Tutor</Button>
           </Grid>
         </Grid>
       </Grid>
