@@ -51,18 +51,24 @@ def verify_student():
   return True
 
 
-def uploadUserByFile(file):
+def upload_user_by_file(file):
   users = ref.child(f'users/')
   data = readJSON(file)
   users.update(data)
   
-def uploadUser(data):
+def upload_user(data):
   users = ref.child(f'users/')
   users.update(data)
+  return users
   
-def getUser(email): 
+def get_user(email): 
   users = ref.child(f'users/{email}')
   return users.get()
+
+def update_user(email, data):
+  users = ref.child(f'users/{email}')
+  users.update(data)
+  return users
   
 # availability for tutors now  
 
@@ -79,8 +85,8 @@ def get_availability():
 # Tutor clocking in
 def clockIn(tutor_email: str):
   # create a new clock in for the tutor in the clocks table
-  user = getUser(tutor_email)
-  availableTutors.update({tutor_email: {'zoom': user.get('zoom'), 'sessionStartTime': None, 'available': True }})
+  user = get_user(tutor_email)
+  availableTutors.update({tutor_email: {'zoom': user.get('zoom'), 'sessionStartTime': None, 'available': True, 'clockInTime': datetime.now().isoformat() }})
   return True
 
 # clocking out
@@ -88,8 +94,14 @@ def clockOut(tutor_email:str):
   # Add the clock out time in the clocks table
   # remove the tutor from the available tutors
   availability = get_availability()
-  availability.pop(tutor_email)
+  tutor_info = availability.pop(tutor_email)
   availableTutors.set(availability)
+  now = datetime.now()
+  clocked_in_hours = (now - datetime.fromisoformat(tutor_info['clockInTime'])).total_seconds()/3600
+  tutor = get_user(tutor_email)
+  tutor['data']['total_hours'] += clocked_in_hours
+  update_user(tutor_email, tutor)
+  clocks.update({tutor_email: {tutor_info['clockInTime']: now.isoformat() }})
   return True
   
 # student requesting a tutor
@@ -115,7 +127,7 @@ def endSession(tutor_email:str):
 # uploadUser('exampleStudent.json')
 # print(getUser('student@email___dot___com'))
 # setAvailability('student@email___dot___com', True)
-clockIn('student@email___dot___com')
+#clockOut('student@email___dot___com')
 print(get_availability())
 # clockOut('student@email___dot___com')
 # print(get_availability())
