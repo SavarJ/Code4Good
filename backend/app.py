@@ -15,10 +15,12 @@ app.config.from_object('settings')
 TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN= os.environ.get('TWILIO_AUTH_TOKEN')
 VERIFY_SERVICE_SID= os.environ.get('VERIFY_SERVICE_SID')
+SALT_KEY= bcrypt.gensalt()
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 KNOWN_PARTICIPANTS = app.config['KNOWN_PARTICIPANTS']
+KNOWN_PARTICIPANTS['natu2002@gmail.com'] = '+12404779604'
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -49,7 +51,7 @@ def verify_passcode_input():
     error = None
     if request.method == 'POST':
         verification_code = request.form['verificationcode']
-        if check_verification_token(phonenumber, verification_code):
+        if check_verification_token(phone, verification_code):
             return render_template('success.html', username = username)
         else:
             error = "Invalid verification code. Please try again."
@@ -63,15 +65,31 @@ def check_verification_token(phone, token):
         .create(to=phone, code=token)    
     return check.status == 'approved'
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
+#@app.route("/")
+#def hello_world():
+    #return "<p>Hello, World!</p>"
+    
 @app.route("/getuser/", methods=["GET"])
 def getUser():
   # takes in {'email': email } data
   email = request.get_json()['email'].replace('___dot___', '.')
   return jsonify(api.get_user())
+
+@app.route("/createuser/", methods=["PUT"])
+def createUser():
+    error = None
+    username = session['username']
+
+    if username in KNOWN_PARTICIPANTS:
+        password = request.form['password']
+        enc = password.encode('utf-8')
+        hashed = bcrypt.hashpw(enc, SALT_KEY)
+        KNOWN_PARTICIPANTS[username] = hashed
+        error = "User not found. Please try again."
+        return render_template('index.html', error = error)
+
+    return jsonify(api.uploadUser((request.get_json())))
+
 
 @app.route('/clockIn/', methods=['POST'])
 def clockIn():

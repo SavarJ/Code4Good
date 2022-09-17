@@ -58,6 +58,7 @@ def upload_user(data):
   users = ref.child(f'users/')
   users.update(data)
   return users
+
   
 def get_user(email): 
   users = ref.child(f'users/{email}')
