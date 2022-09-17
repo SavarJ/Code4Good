@@ -31,21 +31,22 @@ app.post("/clockin", async (req, res) => {
   const tutorEmail = req.body.email;
   const tutor = await User.findOne({ email: tutorEmail });
   if (!tutor || !tutor.isTutor) {
-    res.status(400).send("User is not a tutor");
+    res.status(400).send({ err: "User is not a tutor" });
     return;
   }
   clockins.push({
-    userEmail,
+    tutorEmail,
     startTime: new Date(),
     endTime: null,
   });
+  console.log("hello");
   availableTutors.push({
     userEmail: tutorEmail,
     user: tutor,
     sessionStartTime: new Date(),
     sessionEndTime: null,
     zoom: tutor.zoom,
-    available: True,
+    available: true,
   });
   res.status(200).send(tutor.zoom);
 });
