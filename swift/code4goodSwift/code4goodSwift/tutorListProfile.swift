@@ -9,35 +9,51 @@ import Foundation
 import SwiftUI
 
 struct tutorListProfile: View {
+    let id: Int
+    
     var body: some View {
         ZStack{
-            Rectangle()
-                .fill(Color("tutorFeedBackground"))
-                .frame(width: 400, height: 230)
-            HStack() {
-                Image(TestData.tutors[0].profilePic)
+            HStack(spacing: -1) {
+                Image(TestData.tutors[id].profilePic)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 70)
                         .clipShape(Circle())
                         .shadow(radius: 10)
                         .overlay(Circle().stroke(Color.red, lineWidth: 5))
-                VStack {
-                    Text(TestData.tutors[0].firstName + " " + TestData.tutors[0].lastName)
-                        .foregroundColor(Color.white)
-                    Text("JREAM Chapter: " + TestData.tutors[0].chapter)
-                        .foregroundColor(Color.white)
-                    Text(TestData.tutors[0].bio)
-                        .foregroundColor(Color.white)
+                        .padding(.bottom, 20)
+                VStack(spacing: 2) {
+                    HStack {
+                        Text(TestData.tutors[id].firstName + " " + TestData.tutors[id].lastName)
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 30, weight: .bold, design: .default))
+                        Spacer()
+                    }
+                    HStack {
+                        Text(TestData.tutors[id].chapter)
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 16, weight: .medium, design: .default))
+                            .frame(width: 280, alignment: .leading)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(TestData.tutors[id].bio)
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 14, weight: .medium, design: .default))
+                            .padding(.top, 25)
+                            .padding(.bottom, 5)
+                        Spacer()
+                    }
                 }
             }
+            .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color("tutorFeedBackground")))
+        }
         }
         
     }
-}
 
 struct tutorListProfile_Previews: PreviewProvider {
     static var previews: some View {
-        tutorListProfile()
+        tutorListProfile(id: 0)
     }
 }
