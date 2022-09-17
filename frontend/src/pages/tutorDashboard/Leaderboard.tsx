@@ -78,7 +78,7 @@ const Row: React.FC<RowInterface> = ({ user, position }) => {
           src={`${user.link}`}
           alt="profile pic"
         />
-        <div>{user.fname + "" + user.lname}</div>
+        <div>{user.fname + " " + user.lname}</div>
       </div>
       <div>{user.points}</div>
     </Grid>
