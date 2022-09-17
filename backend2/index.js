@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 const app = express();
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 app.use(cors());
 app.use(express.json());
-
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -140,8 +140,9 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
+  console.log("req.body", req.body);
   const { email, password, fname, lname, dob, phone, isTutor } = req.body;
-  if (!fname || !lname || !dob || !phone || !isTutor || !email || !password) {
+  if (!fname || !lname || !phone || isTutor == null || !email || !password) {
     res.status(400);
     throw new Error("Please add all info fields");
   }

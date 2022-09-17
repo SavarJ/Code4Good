@@ -18,9 +18,8 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import Stack from "@mui/material/Stack";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import userEvent from "@testing-library/user-event";
-
 
 const theme = createTheme();
 
@@ -30,9 +29,7 @@ export default function SignUp() {
     setAccountType(event.target.value as string);
   };
 
-  const [value, setValue] = React.useState<Dayjs | null>(
-    dayjs()
-  );
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
 
   const handleDateChange = (newValue: Dayjs | null) => {
     setValue(newValue);
@@ -41,18 +38,22 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let resData = ({
-      email: data.get('email'),
-      password: data.get('password'),
-      fname: data.get('firstName'),
-      lname: data.get('lastName'),
-      dob: data.get('dateOfBirth'),
-      phone: data.get('phoneNumber'),
-      isTutor : ((accountType == "Tutor") ? true : false),
-
-    })
-    console.log(resData);
-    axios.post("http://localhost:5050/signup", data);
+    let resData = {
+      email: data.get("email"),
+      password: data.get("password"),
+      fname: data.get("firstName"),
+      lname: data.get("lastName"),
+      dob: data.get("dateOfBirth"),
+      phone: data.get("phoneNumber"),
+      isTutor: accountType === "Tutor" ? true : false,
+    };
+    fetch("http://localhost:5050/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(resData),
+    }).then((response) => response.json());
   };
 
   return (
