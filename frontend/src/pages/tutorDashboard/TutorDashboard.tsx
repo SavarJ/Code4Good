@@ -1,5 +1,5 @@
 import React from 'react'
-import TutorNavBar from './dashboard/TutorLayout/TutorNavBar';
+import TutorNavBar from './TutorNavBar';
 export const TutorDashboard = () => {
   return (
 
