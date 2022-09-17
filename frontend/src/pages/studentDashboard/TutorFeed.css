@@ -1,0 +1,15 @@
+.tutor-feed-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem;
+}
+.tutor-feed {
+  border: 1px solid black;
+  padding: 0.5rem;
+  border-radius: 0.375rem; /* 6px */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

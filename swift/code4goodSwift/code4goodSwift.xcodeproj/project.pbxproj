@@ -16,6 +16,8 @@
 		C55A3BE928D54E95003C4C51 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55A3BE828D54E95003C4C51 /* Student.swift */; };
 		C55A3BF128D5555D003C4C51 /* createTutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55A3BF028D5555D003C4C51 /* createTutor.swift */; };
 		C55A3BF328D55741003C4C51 /* testData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55A3BF228D55741003C4C51 /* testData.swift */; };
+		C55A3BF628D59959003C4C51 /* tutorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55A3BF528D59959003C4C51 /* tutorProfile.swift */; };
+		C55A3BF928D5AF67003C4C51 /* TitleTextFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55A3BF828D5AF67003C4C51 /* TitleTextFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		C55A3BE828D54E95003C4C51 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		C55A3BF028D5555D003C4C51 /* createTutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createTutor.swift; sourceTree = "<group>"; };
 		C55A3BF228D55741003C4C51 /* testData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testData.swift; sourceTree = "<group>"; };
+		C55A3BF528D59959003C4C51 /* tutorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tutorProfile.swift; sourceTree = "<group>"; };
+		C55A3BF828D5AF67003C4C51 /* TitleTextFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFormat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +65,13 @@
 		C55A3BD528D543F7003C4C51 /* code4goodSwift */ = {
 			isa = PBXGroup;
 			children = (
+				C55A3BF528D59959003C4C51 /* tutorProfile.swift */,
 				C55A3BF428D5574C003C4C51 /* Data */,
 				C55A3BEA28D54EA4003C4C51 /* User */,
 				C55A3BE428D544A4003C4C51 /* tutorListProfile.swift */,
 				C55A3BD628D543F7003C4C51 /* code4goodSwiftApp.swift */,
 				C55A3BD828D543F7003C4C51 /* ContentView.swift */,
+				C55A3BF728D5AF13003C4C51 /* Formatting */,
 				C55A3BDA28D543FC003C4C51 /* Assets.xcassets */,
 				C55A3BDC28D543FC003C4C51 /* Preview Content */,
 			);
@@ -96,6 +102,14 @@
 				C55A3BF028D5555D003C4C51 /* createTutor.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		C55A3BF728D5AF13003C4C51 /* Formatting */ = {
+			isa = PBXGroup;
+			children = (
+				C55A3BF828D5AF67003C4C51 /* TitleTextFormat.swift */,
+			);
+			path = Formatting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,8 +186,10 @@
 				C55A3BD928D543F7003C4C51 /* ContentView.swift in Sources */,
 				C55A3BE728D54B6B003C4C51 /* Tutor.swift in Sources */,
 				C55A3BD728D543F7003C4C51 /* code4goodSwiftApp.swift in Sources */,
+				C55A3BF628D59959003C4C51 /* tutorProfile.swift in Sources */,
 				C55A3BE928D54E95003C4C51 /* Student.swift in Sources */,
 				C55A3BE528D544A5003C4C51 /* tutorListProfile.swift in Sources */,
+				C55A3BF928D5AF67003C4C51 /* TitleTextFormat.swift in Sources */,
 				C55A3BF328D55741003C4C51 /* testData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,8 @@
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
+import ResponsiveAppBar from "./TutorNavBar";
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+
 import "./leaderboard.css";
 const Leaderboard: React.FC = () => {
   const users = [
@@ -27,7 +30,8 @@ const Leaderboard: React.FC = () => {
 
   return (
     <>
-      <h3>Leaderboard</h3>
+      <ResponsiveAppBar></ResponsiveAppBar>
+      <h3>Tutor Leaderboard</h3>
       <div className="leaderboard">
         {users
           .sort((u) => u.points)
