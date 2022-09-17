@@ -49,7 +49,7 @@ const userSchema = new Schema({
     required: true,
   },
   rating: {
-    type: Number,
+    type: Array,
     required: true,
   },
   profileLink: {

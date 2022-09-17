@@ -81,9 +81,10 @@ app.post("/book", (req, res) => {
   return res.status(200).send(tutor.zoom);
 });
 
-app.post("/endsession", (req, res) => {
+app.post("/endsession", async (req, res) => {
   const tutorEmail = req.body.tutorEmail;
   const studentEmail = req.body.studentEmail;
+  const rating = req.body.rating;
 
   currentTutoringSession = currentTutoringSessions.find(
     (session) =>
@@ -98,6 +99,15 @@ app.post("/endsession", (req, res) => {
       session.tutorEmail.studentEmail !== studentEmail
   );
   finishedTutoringSessions.push(currentTutoringSession);
+
+  const tutorUser = await User.findOne({ email: tutorEmail });
+  tutorUser.rating.push(rating);
+  tutorUser.points += Math.round(
+    ((currentTutoringSession.endTime - currentTutoringSession.startTime) /
+      3600000) *
+      rating
+  );
+
   return res.status(200).send("Session ended");
 });
 
